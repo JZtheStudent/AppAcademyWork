@@ -1,0 +1,364 @@
+  [1m[35m (159.3ms)[0m  [1m[35mCREATE DATABASE "rails-1A-assoc_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (75.1ms)[0m  [1m[35mCREATE DATABASE "rails-1A-assoc_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35mSQL (0.7ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  ↳ db/schema.rb:16
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "cart_items" CASCADE[0m
+  ↳ db/schema.rb:18
+  [1m[35m (9.3ms)[0m  [1m[35mCREATE TABLE "cart_items" ("id" bigserial primary key, "cart_id" integer NOT NULL, "dish_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:18
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  "index_cart_items_on_cart_id" ON "cart_items"  ("cart_id")[0m
+  ↳ db/schema.rb:18
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE  INDEX  "index_cart_items_on_dish_id" ON "cart_items"  ("dish_id")[0m
+  ↳ db/schema.rb:18
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "carts" CASCADE[0m
+  ↳ db/schema.rb:27
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE TABLE "carts" ("id" bigserial primary key, "user_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:27
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_carts_on_user_id" ON "carts"  ("user_id")[0m
+  ↳ db/schema.rb:27
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "dishes" CASCADE[0m
+  ↳ db/schema.rb:34
+  [1m[35m (6.2ms)[0m  [1m[35mCREATE TABLE "dishes" ("id" bigserial primary key, "name" character varying NOT NULL, "description" text NOT NULL, "restaurant_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:34
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE  INDEX  "index_dishes_on_restaurant_id" ON "dishes"  ("restaurant_id")[0m
+  ↳ db/schema.rb:34
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "restaurants" CASCADE[0m
+  ↳ db/schema.rb:43
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE TABLE "restaurants" ("id" bigserial primary key, "name" character varying NOT NULL, "address" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "owner_id" integer)[0m
+  ↳ db/schema.rb:43
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE  INDEX  "index_restaurants_on_owner_id" ON "restaurants"  ("owner_id")[0m
+  ↳ db/schema.rb:43
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "reviews" CASCADE[0m
+  ↳ db/schema.rb:52
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE TABLE "reviews" ("id" bigserial primary key, "body" text NOT NULL, "rating" integer NOT NULL, "user_id" integer NOT NULL, "restaurant_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:52
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE  INDEX  "index_reviews_on_restaurant_id" ON "reviews"  ("restaurant_id")[0m
+  ↳ db/schema.rb:52
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE  INDEX  "index_reviews_on_user_id" ON "reviews"  ("user_id")[0m
+  ↳ db/schema.rb:52
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  ↳ db/schema.rb:63
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying NOT NULL, "password" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:63
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_username" ON "users"  ("username")[0m
+  ↳ db/schema.rb:63
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200128223124)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200128220826),
+(20200128214343),
+(20200128222950),
+(20200128214354),
+(20200128214349),
+(20200128214326),
+(20200128214319);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (1.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-08-10 16:24:21.106216"], ["updated_at", "2021-08-10 16:24:21.106216"]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35mSQL (0.5ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  ↳ db/schema.rb:16
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "cart_items" CASCADE[0m
+  ↳ db/schema.rb:18
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE "cart_items" ("id" bigserial primary key, "cart_id" integer NOT NULL, "dish_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:18
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE  INDEX  "index_cart_items_on_cart_id" ON "cart_items"  ("cart_id")[0m
+  ↳ db/schema.rb:18
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE  INDEX  "index_cart_items_on_dish_id" ON "cart_items"  ("dish_id")[0m
+  ↳ db/schema.rb:18
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "carts" CASCADE[0m
+  ↳ db/schema.rb:27
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE TABLE "carts" ("id" bigserial primary key, "user_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:27
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_carts_on_user_id" ON "carts"  ("user_id")[0m
+  ↳ db/schema.rb:27
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "dishes" CASCADE[0m
+  ↳ db/schema.rb:34
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "dishes" ("id" bigserial primary key, "name" character varying NOT NULL, "description" text NOT NULL, "restaurant_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:34
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE  INDEX  "index_dishes_on_restaurant_id" ON "dishes"  ("restaurant_id")[0m
+  ↳ db/schema.rb:34
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "restaurants" CASCADE[0m
+  ↳ db/schema.rb:43
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE "restaurants" ("id" bigserial primary key, "name" character varying NOT NULL, "address" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "owner_id" integer)[0m
+  ↳ db/schema.rb:43
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE  INDEX  "index_restaurants_on_owner_id" ON "restaurants"  ("owner_id")[0m
+  ↳ db/schema.rb:43
+  [1m[35m (1.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "reviews" CASCADE[0m
+  ↳ db/schema.rb:52
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE TABLE "reviews" ("id" bigserial primary key, "body" text NOT NULL, "rating" integer NOT NULL, "user_id" integer NOT NULL, "restaurant_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:52
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE  INDEX  "index_reviews_on_restaurant_id" ON "reviews"  ("restaurant_id")[0m
+  ↳ db/schema.rb:52
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_reviews_on_user_id" ON "reviews"  ("user_id")[0m
+  ↳ db/schema.rb:52
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  ↳ db/schema.rb:63
+  [1m[35m (5.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying NOT NULL, "password" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:63
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_username" ON "users"  ("username")[0m
+  ↳ db/schema.rb:63
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200128223124)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200128220826),
+(20200128214343),
+(20200128222950),
+(20200128214354),
+(20200128214349),
+(20200128214326),
+(20200128214319);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-08-10 16:24:21.261940"], ["updated_at", "2021-08-10 16:24:21.261940"]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Update (0.9ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2021-08-10 16:24:21.266858"], ["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:14
+  [1m[36mUser Destroy (1.5ms)[0m  [1m[31mDELETE FROM "users"[0m
+  ↳ db/seeds.rb:15
+  [1m[36mRestaurant Destroy (0.9ms)[0m  [1m[31mDELETE FROM "restaurants"[0m
+  ↳ db/seeds.rb:16
+  [1m[36mCart Destroy (0.6ms)[0m  [1m[31mDELETE FROM "carts"[0m
+  ↳ db/seeds.rb:17
+  [1m[36mDish Destroy (0.7ms)[0m  [1m[31mDELETE FROM "dishes"[0m
+  ↳ db/seeds.rb:18
+  [1m[36mReview Destroy (0.9ms)[0m  [1m[31mDELETE FROM "reviews"[0m
+  ↳ db/seeds.rb:19
+  [1m[36mCartItem Destroy (1.1ms)[0m  [1m[31mDELETE FROM "cart_items"[0m
+  ↳ db/seeds.rb:20
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("id", "username", "password", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["id", 60348], ["username", "randy"], ["password", "bobandy"], ["created_at", "2021-08-10 16:24:21.343219"], ["updated_at", "2021-08-10 16:24:21.343219"]]
+  ↳ db/seeds.rb:22
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("id", "username", "password", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["id", 29615], ["username", "donald"], ["password", "mcronald"], ["created_at", "2021-08-10 16:24:21.345252"], ["updated_at", "2021-08-10 16:24:21.345252"]]
+  ↳ db/seeds.rb:28
+  [1m[36mRestaurant Create (0.7ms)[0m  [1m[32mINSERT INTO "restaurants" ("id", "name", "address", "created_at", "updated_at", "owner_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["id", 40120], ["name", "Bobandys Burgers"], ["address", "1991 Sunnyvale blvd"], ["created_at", "2021-08-10 16:24:21.356463"], ["updated_at", "2021-08-10 16:24:21.356463"], ["owner_id", 60348]]
+  ↳ db/seeds.rb:34
+  [1m[36mRestaurant Create (0.4ms)[0m  [1m[32mINSERT INTO "restaurants" ("id", "name", "address", "created_at", "updated_at", "owner_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["id", 71872], ["name", "McRonalds"], ["address", "86 Hachiroku dr"], ["created_at", "2021-08-10 16:24:21.358657"], ["updated_at", "2021-08-10 16:24:21.358657"], ["owner_id", 29615]]
+  ↳ db/seeds.rb:41
+  [1m[36mCart Create (0.8ms)[0m  [1m[32mINSERT INTO "carts" ("id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 40773], ["user_id", 60348], ["created_at", "2021-08-10 16:24:21.372270"], ["updated_at", "2021-08-10 16:24:21.372270"]]
+  ↳ db/seeds.rb:48
+  [1m[36mDish Create (0.5ms)[0m  [1m[32mINSERT INTO "dishes" ("id", "name", "description", "restaurant_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["id", 3788], ["name", "Burrito Burger"], ["description", "A burrito but also a burger"], ["restaurant_id", 40120], ["created_at", "2021-08-10 16:24:21.394550"], ["updated_at", "2021-08-10 16:24:21.394550"]]
+  ↳ db/seeds.rb:53
+  [1m[36mReview Create (0.6ms)[0m  [1m[32mINSERT INTO "reviews" ("id", "body", "rating", "user_id", "restaurant_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["id", 97647], ["body", "Best restaurant in Nova Scotia."], ["rating", 5], ["user_id", 29615], ["restaurant_id", 40120], ["created_at", "2021-08-10 16:24:21.406244"], ["updated_at", "2021-08-10 16:24:21.406244"]]
+  ↳ db/seeds.rb:60
+  [1m[36mReview Create (0.4ms)[0m  [1m[32mINSERT INTO "reviews" ("id", "body", "rating", "user_id", "restaurant_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["id", 28273], ["body", "I got sick from eating here."], ["rating", 1], ["user_id", 60348], ["restaurant_id", 71872], ["created_at", "2021-08-10 16:24:21.407925"], ["updated_at", "2021-08-10 16:24:21.407925"]]
+  ↳ db/seeds.rb:68
+  [1m[36mCart Load (0.5ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 40773], ["LIMIT", 1]]
+  ↳ db/seeds.rb:76
+  [1m[36mDish Load (0.3ms)[0m  [1m[34mSELECT  "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 3788], ["LIMIT", 1]]
+  ↳ db/seeds.rb:76
+  [1m[36mCartItem Create (0.7ms)[0m  [1m[32mINSERT INTO "cart_items" ("id", "cart_id", "dish_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["id", 8820], ["cart_id", 40773], ["dish_id", 3788], ["created_at", "2021-08-10 16:24:21.435751"], ["updated_at", "2021-08-10 16:24:21.435751"]]
+  ↳ db/seeds.rb:76
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:14
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35mSQL (0.4ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  ↳ db/schema.rb:16
+  [1m[35m (3.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "cart_items" CASCADE[0m
+  ↳ db/schema.rb:18
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE TABLE "cart_items" ("id" bigserial primary key, "cart_id" integer NOT NULL, "dish_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:18
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE  INDEX  "index_cart_items_on_cart_id" ON "cart_items"  ("cart_id")[0m
+  ↳ db/schema.rb:18
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  "index_cart_items_on_dish_id" ON "cart_items"  ("dish_id")[0m
+  ↳ db/schema.rb:18
+  [1m[35m (3.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "carts" CASCADE[0m
+  ↳ db/schema.rb:27
+  [1m[35m (4.7ms)[0m  [1m[35mCREATE TABLE "carts" ("id" bigserial primary key, "user_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:27
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_carts_on_user_id" ON "carts"  ("user_id")[0m
+  ↳ db/schema.rb:27
+  [1m[35m (4.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "dishes" CASCADE[0m
+  ↳ db/schema.rb:34
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE TABLE "dishes" ("id" bigserial primary key, "name" character varying NOT NULL, "description" text NOT NULL, "restaurant_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:34
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE  INDEX  "index_dishes_on_restaurant_id" ON "dishes"  ("restaurant_id")[0m
+  ↳ db/schema.rb:34
+  [1m[35m (3.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "restaurants" CASCADE[0m
+  ↳ db/schema.rb:43
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE TABLE "restaurants" ("id" bigserial primary key, "name" character varying NOT NULL, "address" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "owner_id" integer)[0m
+  ↳ db/schema.rb:43
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE  INDEX  "index_restaurants_on_owner_id" ON "restaurants"  ("owner_id")[0m
+  ↳ db/schema.rb:43
+  [1m[35m (4.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "reviews" CASCADE[0m
+  ↳ db/schema.rb:52
+  [1m[35m (7.1ms)[0m  [1m[35mCREATE TABLE "reviews" ("id" bigserial primary key, "body" text NOT NULL, "rating" integer NOT NULL, "user_id" integer NOT NULL, "restaurant_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:52
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE  INDEX  "index_reviews_on_restaurant_id" ON "reviews"  ("restaurant_id")[0m
+  ↳ db/schema.rb:52
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE  INDEX  "index_reviews_on_user_id" ON "reviews"  ("user_id")[0m
+  ↳ db/schema.rb:52
+  [1m[35m (3.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  ↳ db/schema.rb:63
+  [1m[35m (6.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying NOT NULL, "password" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:63
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_username" ON "users"  ("username")[0m
+  ↳ db/schema.rb:63
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35mSQL (0.5ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  ↳ db/schema.rb:16
+  [1m[35m (8.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "cart_items" CASCADE[0m
+  ↳ db/schema.rb:18
+  [1m[35m (8.7ms)[0m  [1m[35mCREATE TABLE "cart_items" ("id" bigserial primary key, "cart_id" integer NOT NULL, "dish_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:18
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE  INDEX  "index_cart_items_on_cart_id" ON "cart_items"  ("cart_id")[0m
+  ↳ db/schema.rb:18
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE  INDEX  "index_cart_items_on_dish_id" ON "cart_items"  ("dish_id")[0m
+  ↳ db/schema.rb:18
+  [1m[35m (4.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "carts" CASCADE[0m
+  ↳ db/schema.rb:27
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE TABLE "carts" ("id" bigserial primary key, "user_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:27
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_carts_on_user_id" ON "carts"  ("user_id")[0m
+  ↳ db/schema.rb:27
+  [1m[35m (3.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "dishes" CASCADE[0m
+  ↳ db/schema.rb:34
+  [1m[35m (7.2ms)[0m  [1m[35mCREATE TABLE "dishes" ("id" bigserial primary key, "name" character varying NOT NULL, "description" text NOT NULL, "restaurant_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:34
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE  INDEX  "index_dishes_on_restaurant_id" ON "dishes"  ("restaurant_id")[0m
+  ↳ db/schema.rb:34
+  [1m[35m (5.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "restaurants" CASCADE[0m
+  ↳ db/schema.rb:43
+  [1m[35m (5.2ms)[0m  [1m[35mCREATE TABLE "restaurants" ("id" bigserial primary key, "name" character varying NOT NULL, "address" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "owner_id" integer)[0m
+  ↳ db/schema.rb:43
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE  INDEX  "index_restaurants_on_owner_id" ON "restaurants"  ("owner_id")[0m
+  ↳ db/schema.rb:43
+  [1m[35m (3.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "reviews" CASCADE[0m
+  ↳ db/schema.rb:52
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE TABLE "reviews" ("id" bigserial primary key, "body" text NOT NULL, "rating" integer NOT NULL, "user_id" integer NOT NULL, "restaurant_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:52
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE  INDEX  "index_reviews_on_restaurant_id" ON "reviews"  ("restaurant_id")[0m
+  ↳ db/schema.rb:52
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  "index_reviews_on_user_id" ON "reviews"  ("user_id")[0m
+  ↳ db/schema.rb:52
+  [1m[35m (4.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  ↳ db/schema.rb:63
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying NOT NULL, "password" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:63
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_username" ON "users"  ("username")[0m
+  ↳ db/schema.rb:63
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Update (0.5ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "development"], ["updated_at", "2021-08-10 16:24:24.346120"], ["key", "environment"]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Update (0.3ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2021-08-10 16:24:24.351885"], ["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:14
+  [1m[36mUser Destroy (0.8ms)[0m  [1m[31mDELETE FROM "users"[0m
+  ↳ db/seeds.rb:15
+  [1m[36mRestaurant Destroy (0.5ms)[0m  [1m[31mDELETE FROM "restaurants"[0m
+  ↳ db/seeds.rb:16
+  [1m[36mCart Destroy (0.5ms)[0m  [1m[31mDELETE FROM "carts"[0m
+  ↳ db/seeds.rb:17
+  [1m[36mDish Destroy (0.5ms)[0m  [1m[31mDELETE FROM "dishes"[0m
+  ↳ db/seeds.rb:18
+  [1m[36mReview Destroy (0.6ms)[0m  [1m[31mDELETE FROM "reviews"[0m
+  ↳ db/seeds.rb:19
+  [1m[36mCartItem Destroy (0.7ms)[0m  [1m[31mDELETE FROM "cart_items"[0m
+  ↳ db/seeds.rb:20
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("id", "username", "password", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["id", 17598], ["username", "randy"], ["password", "bobandy"], ["created_at", "2021-08-10 16:24:26.794571"], ["updated_at", "2021-08-10 16:24:26.794571"]]
+  ↳ db/seeds.rb:22
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("id", "username", "password", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["id", 59956], ["username", "donald"], ["password", "mcronald"], ["created_at", "2021-08-10 16:24:26.796102"], ["updated_at", "2021-08-10 16:24:26.796102"]]
+  ↳ db/seeds.rb:28
+  [1m[36mRestaurant Create (0.6ms)[0m  [1m[32mINSERT INTO "restaurants" ("id", "name", "address", "created_at", "updated_at", "owner_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["id", 20429], ["name", "Bobandys Burgers"], ["address", "1991 Sunnyvale blvd"], ["created_at", "2021-08-10 16:24:26.805136"], ["updated_at", "2021-08-10 16:24:26.805136"], ["owner_id", 17598]]
+  ↳ db/seeds.rb:34
+  [1m[36mRestaurant Create (0.2ms)[0m  [1m[32mINSERT INTO "restaurants" ("id", "name", "address", "created_at", "updated_at", "owner_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["id", 29482], ["name", "McRonalds"], ["address", "86 Hachiroku dr"], ["created_at", "2021-08-10 16:24:26.806638"], ["updated_at", "2021-08-10 16:24:26.806638"], ["owner_id", 59956]]
+  ↳ db/seeds.rb:41
+  [1m[36mCart Create (0.5ms)[0m  [1m[32mINSERT INTO "carts" ("id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 25300], ["user_id", 17598], ["created_at", "2021-08-10 16:24:26.818698"], ["updated_at", "2021-08-10 16:24:26.818698"]]
+  ↳ db/seeds.rb:48
+  [1m[36mDish Create (0.7ms)[0m  [1m[32mINSERT INTO "dishes" ("id", "name", "description", "restaurant_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["id", 52208], ["name", "Burrito Burger"], ["description", "A burrito but also a burger"], ["restaurant_id", 20429], ["created_at", "2021-08-10 16:24:26.828095"], ["updated_at", "2021-08-10 16:24:26.828095"]]
+  ↳ db/seeds.rb:53
+  [1m[36mReview Create (0.5ms)[0m  [1m[32mINSERT INTO "reviews" ("id", "body", "rating", "user_id", "restaurant_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["id", 92257], ["body", "Best restaurant in Nova Scotia."], ["rating", 5], ["user_id", 59956], ["restaurant_id", 20429], ["created_at", "2021-08-10 16:24:26.837859"], ["updated_at", "2021-08-10 16:24:26.837859"]]
+  ↳ db/seeds.rb:60
+  [1m[36mReview Create (0.3ms)[0m  [1m[32mINSERT INTO "reviews" ("id", "body", "rating", "user_id", "restaurant_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["id", 76019], ["body", "I got sick from eating here."], ["rating", 1], ["user_id", 17598], ["restaurant_id", 29482], ["created_at", "2021-08-10 16:24:26.839318"], ["updated_at", "2021-08-10 16:24:26.839318"]]
+  ↳ db/seeds.rb:68
+  [1m[36mCart Load (0.2ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 25300], ["LIMIT", 1]]
+  ↳ db/seeds.rb:76
+  [1m[36mDish Load (0.2ms)[0m  [1m[34mSELECT  "dishes".* FROM "dishes" WHERE "dishes"."id" = $1 LIMIT $2[0m  [["id", 52208], ["LIMIT", 1]]
+  ↳ db/seeds.rb:76
+  [1m[36mCartItem Create (0.4ms)[0m  [1m[32mINSERT INTO "cart_items" ("id", "cart_id", "dish_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["id", 64511], ["cart_id", 25300], ["dish_id", 52208], ["created_at", "2021-08-10 16:24:26.857437"], ["updated_at", "2021-08-10 16:24:26.857437"]]
+  ↳ db/seeds.rb:76
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:14

@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: gifts
+#
+#  id          :bigint           not null, primary key
+#  description :string           not null
+#  title       :string           not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  guest_id    :integer          not null
+#
+# Indexes
+#
+#  index_gifts_on_guest_id  (guest_id)
+#
+class Gift < ApplicationRecord
+  # N.B. Remember, Rails 5 automatically validates the presence of
+  # belongs_to associations, so we can leave the presence validation of
+  # guest out here.
+  validates :description, :title, presence: true
+
+  belongs_to :guest
+end

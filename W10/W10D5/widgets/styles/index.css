@@ -1,0 +1,15 @@
+#main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 3px black solid;
+  font-size: 'Comic Sans, Comic Sans MS, cursive';
+}
+
+#clock-title {
+  border-bottom: 2px black solid;
+}
+
+#clock-time {
+  border: 2px red dotted;
+}

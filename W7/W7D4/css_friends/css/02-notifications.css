@@ -1,0 +1,38 @@
+/* PHASE 2: Notifications */
+
+.badge {
+  display: inline;
+  font-size: 14px;
+  padding: 1px 6px;
+  background: black;
+  border-radius: 50%;
+}
+
+.header {
+  position: relative
+}
+
+.header-list > li:first-child {
+  position: relative;
+}
+
+.header-notifications {
+  display: none;
+  position: absolute;
+  left: -1px;
+  font-size: 14px;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  background: #fff;
+}
+
+/* hovering over a <li> tag that is an ancestor to .header-notifications   */
+li:hover .header-notifications {
+  display: block;
+}
+
+.header-notifications > li {
+  border-top: 1px solid #ccc;
+  color: black;
+}
